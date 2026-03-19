@@ -1,1 +1,14 @@
-source/\natoms/\ntracker/*.db\n.auth\n__pycache__/\n*.log
+source/
+staging/
+staging_processed/
+tracker/
+venv/
+.auth
+__pycache__/
+*.log
+*.pid
+# Protect local path metadata
+migration_tracker.json
+NIDABA_TEMPORAL_INDEX.md
+NIDABA_LAB_EVOLUTION.md
+NIDABA_CRUSH_REPORT.md
