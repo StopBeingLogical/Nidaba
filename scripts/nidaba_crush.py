@@ -225,6 +225,23 @@ class Atomizer:
                                 atoms.extend(self._create_atoms(content, path, f"c{conv_idx}_m{msg_id}", f"chatgpt_conv: {title}"))
                 return atoms
 
+            # 4. Claude export
+            if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict) and 'chat_messages' in data[0]:
+                logger.info(f"Using specialized Claude export handler for {path}")
+                for conv_idx, conv in enumerate(data):
+                    title = conv.get('name', 'Untitled')
+                    summary = conv.get('summary')
+                    if summary:
+                        atoms.extend(self._create_atoms(summary, path, f"c{conv_idx}_summary", f"claude_conv: {title}"))
+                    
+                    for msg_idx, msg in enumerate(conv.get('chat_messages', [])):
+                        role = msg.get('sender')
+                        content = msg.get('text')
+                        if role in ['human', 'assistant'] and content:
+                            role_tag = "user" if role == "human" else "assistant"
+                            atoms.extend(self._create_atoms(content, path, f"c{conv_idx}_m{msg_idx}", f"claude_{role_tag}: {title}"))
+                return atoms
+
             # Default: General JSON
             logger.info(f"Using general JSON handler for {path}")
             text = json.dumps(data, indent=2)

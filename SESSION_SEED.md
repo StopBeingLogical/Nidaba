@@ -1,5 +1,5 @@
 # NIDABA Session Seed
-**Last Updated:** 2026-03-18
+**Last Updated:** 2026-03-22
 **Project:** NIDABA — The Scribe & Archivist
 **Purpose:** Canonical context for the corpus deconstruction and smelting pipeline.
 
@@ -21,9 +21,10 @@ Nidaba is the bridge between a sprawling, heterogeneous legacy corpus (~900MB) a
 4. **Smelt:** (Future) Refinement interviews to create canonical seeds.
 
 ## 4. Current State
-- **Corpus Resolution:** 400k+ atoms embedded.
-- **Milestone:** Successfully implemented recursive splitting for extra-long conversational atoms.
+- **Corpus Resolution:** 401,348 atoms embedded across 1,349 unique source files.
+- **Milestone:** Implemented specialized handlers for **Claude JSON exports**, ensuring high-fidelity message-level atomization and summary extraction.
 - **Repository:** Mirrored to Forgejo (Atlas) and GitHub (External).
+- **Latest Operation:** Re-processed `conversations.json` (22MB) using the new Claude handler, resolving all context-length embedding errors.
 
 ---
 *Follow the Seshat bootstrap protocol before modifying this project.*
